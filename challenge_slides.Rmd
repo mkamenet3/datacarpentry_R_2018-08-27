@@ -5,7 +5,7 @@ output: slidy_presentation
 # Challenge 1
 
 
-Using pipes, subset the data to include individuals collected before 1995,
+Using pipes, subset the data to include individuals with weight less than 5,
 and retain the columns `year`, `sex`, and `weight.`
 
 
