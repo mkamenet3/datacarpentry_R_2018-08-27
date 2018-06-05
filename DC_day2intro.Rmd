@@ -6,6 +6,57 @@ output:
     css: no_total_slides.css
 ---
 
+## Spreadsheets
+
+- make it a rectangle
+- rows = observations, columns = variables
+- one header row; avoid spaces
+- one thing per cell
+- fill in all cells
+- consistent missing value codes
+- care about dates (3 separate columns?)
+- no calculations in raw data files
+- save as CSV
+- don't use font color or highlighting as data
+
+
+
+
+## OpenRefine
+
+- cleaning & exploration
+- faceting / filtering
+- splitting a column
+- remove trailing/ending text
+- cluster categories (to find typos)
+- identify outliers
+- all actions are reproducible
+
+
+
+## Why databases?
+
+- super-fast access to really large data sets
+
+- careful curation of data that are complicated and/or constantly
+  changing
+
+
+## SQL
+
+```
+    SELECT *
+    FROM surveys
+    WHERE species_id = 'DM' AND weight > 78
+        (OR IN)
+    ORDER BY
+        (ASC DESC)
+    GROUP BY
+    COUNT(*), SUM(weight)
+    JOIN ON
+```
+
+
 ##
 
 <div class="centered" style="margin-top:250px; font-size:130%;">
@@ -17,21 +68,22 @@ are powerful weapons against chaos.
 &ndash; Jenny Bryan
 </div>
 
+
 ## Organizing projects
 
 - all files in common directory
 - separate raw data from clean data
 - separate code from data
 - file names: meaningful, sortable, consistent
-- dates like `2016-08-24`
+- dates like `2018-06-04`
 
 
 ```
         RawData/
-        InProcessData/
         CleanData/
         Code/
-        Reports/
+        Notes/
+        README.txt
 ```
 
 
@@ -54,47 +106,7 @@ Have sympathy for your future self.
 </div>
 
 
-## Spreadsheets
 
-- make it a rectangle
-- rows = observations, columns = variables
-- one header row; avoid spaces
-- one thing per cell
-- fill in all cells
-- consistent missing value codes
-- care about dates (3 separate columns?)
-- no calculations in raw data files
-- save as CSV
-- don't use font color or highlighting as data
-
-
-
-
-## OpenRefine
-
-- Cleaning & exploration
-- faceting / filtering
-- splitting a column
-- remove trailing/ending text
-- cluster "levels" of a factor
-- identify outliers
-- all actions are reproducible
-
-
-
-## SQL
-
-```
-    SELECT * FROM species
-    SELECT weight/1000.0 FROM species
-        WHERE species_id = 'DM' AND weight > 78
-        (OR IN)
-    ORDER BY
-        (ASC DESC)
-    GROUP BY
-    COUNT(*), SUM(weight)
-    JOIN ON
-```
 
 
 ## R
@@ -102,7 +114,7 @@ Have sympathy for your future self.
 - full programming language
 - focused on programming with data
 - super for data analysis and visualization
-- R Archive ("CRAN") has >9000 add-on packages
+- R Archive ("CRAN") has >10,000 add-on packages
 - RStudio: "Integrated development environment" (IDE) for R
 
 

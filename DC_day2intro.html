@@ -90,44 +90,7 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2></h2></hgroup><article  id="section">
-
-<div class="centered" style="margin-top:250px; font-size:130%;">
-<p>File organization and naming <br/> are powerful weapons against chaos.</p></div>
-
-<div style="margin-left:500px;">
-<p>– Jenny Bryan</p></div>
-
-</article></slide><slide class=""><hgroup><h2>Organizing projects</h2></hgroup><article  id="organizing-projects">
-
-<ul>
-<li>all files in common directory</li>
-<li>separate raw data from clean data</li>
-<li>separate code from data</li>
-<li>file names: meaningful, sortable, consistent</li>
-<li>dates like <code>2016-08-24</code></li>
-</ul>
-
-<pre >        RawData/
-        InProcessData/
-        CleanData/
-        Code/
-        Reports/</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
-
-<div class="large" style="margin-top:250px; font-size:130%;">
-<p>Your closest collaborator is you six months ago,<br/> but you don&#39;t reply to email.</p></div>
-
-<div style="margin-left:400px;">
-<p>– (paraphrasing) Mark Holder</p></div>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
-
-<div class="centered" style="margin-top:250px; font-size:130%;">
-<p>Have sympathy for your future self.</p></div>
-
-</article></slide><slide class=""><hgroup><h2>Spreadsheets</h2></hgroup><article  id="spreadsheets">
+<slide class=""><hgroup><h2>Spreadsheets</h2></hgroup><article  id="spreadsheets">
 
 <ul>
 <li>make it a rectangle</li>
@@ -145,20 +108,27 @@
 </article></slide><slide class=""><hgroup><h2>OpenRefine</h2></hgroup><article  id="openrefine">
 
 <ul>
-<li>Cleaning &amp; exploration</li>
+<li>cleaning &amp; exploration</li>
 <li>faceting / filtering</li>
 <li>splitting a column</li>
 <li>remove trailing/ending text</li>
-<li>cluster &quot;levels&quot; of a factor</li>
+<li>cluster categories (to find typos)</li>
 <li>identify outliers</li>
 <li>all actions are reproducible</li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2>Why databases?</h2></hgroup><article  id="why-databases">
+
+<ul>
+<li><p>super-fast access to really large data sets</p></li>
+<li><p>careful curation of data that are complicated and/or constantly changing</p></li>
+</ul>
+
 </article></slide><slide class=""><hgroup><h2>SQL</h2></hgroup><article  id="sql">
 
-<pre >    SELECT * FROM species
-    SELECT weight/1000.0 FROM species
-        WHERE species_id = &#39;DM&#39; AND weight &gt; 78
+<pre >    SELECT *
+    FROM surveys
+    WHERE species_id = &#39;DM&#39; AND weight &gt; 78
         (OR IN)
     ORDER BY
         (ASC DESC)
@@ -166,13 +136,50 @@
     COUNT(*), SUM(weight)
     JOIN ON</pre>
 
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
+
+<div class="centered" style="margin-top:250px; font-size:130%;">
+<p>File organization and naming <br/> are powerful weapons against chaos.</p></div>
+
+<div style="margin-left:500px;">
+<p>– Jenny Bryan</p></div>
+
+</article></slide><slide class=""><hgroup><h2>Organizing projects</h2></hgroup><article  id="organizing-projects">
+
+<ul>
+<li>all files in common directory</li>
+<li>separate raw data from clean data</li>
+<li>separate code from data</li>
+<li>file names: meaningful, sortable, consistent</li>
+<li>dates like <code>2018-06-04</code></li>
+</ul>
+
+<pre >        RawData/
+        CleanData/
+        Code/
+        Notes/
+        README.txt</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<div class="large" style="margin-top:250px; font-size:130%;">
+<p>Your closest collaborator is you six months ago,<br/> but you don&#39;t reply to email.</p></div>
+
+<div style="margin-left:400px;">
+<p>– (paraphrasing) Mark Holder</p></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
+
+<div class="centered" style="margin-top:250px; font-size:130%;">
+<p>Have sympathy for your future self.</p></div>
+
 </article></slide><slide class=""><hgroup><h2>R</h2></hgroup><article  id="r">
 
 <ul>
 <li>full programming language</li>
 <li>focused on programming with data</li>
 <li>super for data analysis and visualization</li>
-<li>R Archive (&quot;CRAN&quot;) has &gt;9000 add-on packages</li>
+<li>R Archive (&quot;CRAN&quot;) has &gt;10,000 add-on packages</li>
 <li>RStudio: &quot;Integrated development environment&quot; (IDE) for R</li>
 </ul>
 
