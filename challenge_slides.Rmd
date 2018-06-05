@@ -14,15 +14,13 @@ and retain the columns `year`, `sex`, and `weight.`
 # Challenge 2
 
 
-Create a new dataframe from the survey data that meets the following
-criteria:
+Create a new dataframe from the survey data that
 
-- contains only the `species_id` column and a column that contains
-values that are the square-root of `hindfoot_length` values (e.g. a new column
+- contains only the `species_id` column and a column
+with the square-root of `hindfoot_length` values (e.g. a new column
 `hindfoot_sqrt`).
-- In this `hindfoot_sqrt` column, all values are < 3.
 
-Hint: think about how the commands should be ordered
+- also, for the `hindfoot_sqrt` column, all values are < 3.
 
 
 ---
@@ -38,7 +36,7 @@ How many times was each `plot_type` surveyed?
 # Challenge 4
 
 
-Use `group_by()` and `summarize()` to find the mean, min, and max hindfoot
+Use `group_by()` and `summarize()` to find the min and max hindfoot
 length for each species.
 
 
@@ -47,10 +45,18 @@ length for each species.
 # Challenge 5
 
 
-What was the heaviest animal measured in each year? Return the columns `year`,
-`genus`, `species`, and `weight`.
+Prepare three data sets for the data visualization session:
 
-Hint: Use `filter()` rather than `summarize()`.
+1. **`just_dm`** containing only the observations from with `species_ID == "DM"`
+
+2. **`stat_summary`** containing the average weight and hindfoot length
+   for each species, as well as a count of the number of observations
+   for each species (using the `n()` function).
+
+3. **`year_summary`** containing the yearly average weight, hindfoot
+   length, and count data for each species and sex combination.
+   (Hint, you only need to change the `group_by()` part from #2 to do
+   this.)
 
 
 ---
@@ -86,7 +92,7 @@ sample size.
 
 
 - Use the `year_summary` dataset to make a line plot of counts of each
-  species by year, with a different line for each species.
+  species by year, with a different colored line for each species.
 
 - Use `aes(linetype=sex)` to have different line types for the two
   sexes.
