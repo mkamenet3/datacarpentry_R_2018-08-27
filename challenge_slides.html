@@ -13,38 +13,64 @@
 <body>
 <div id="challenge-1" class="slide section level1">
 <h1>Challenge 1</h1>
+<p>Using pipes, subset the data to include individuals collected before 1995, and retain the columns <code>year</code>, <code>sex</code>, and <code>weight.</code></p>
+</div>
+<div id="challenge-2" class="slide section level1">
+<h1>Challenge 2</h1>
+<p>Create a new dataframe from the survey data that meets the following criteria:</p>
+<ul>
+<li>contains only the <code>species_id</code> column and a column that contains values that are the square-root of <code>hindfoot_length</code> values (e.g. a new column <code>hindfoot_sqrt</code>).</li>
+<li>In this <code>hindfoot_sqrt</code> column, there are no NA values and all values are &lt; 3.</li>
+</ul>
+<p>Hint: think about how the commands should be ordered</p>
+</div>
+<div id="challenge-3" class="slide section level1">
+<h1>Challenge 3</h1>
+<p>How many times was each <code>plot_type</code> surveyed?</p>
+</div>
+<div id="challenge-4" class="slide section level1">
+<h1>Challenge 4</h1>
+<p>Use <code>group_by()</code> and <code>summarize()</code> to find the mean, min, and max hindfoot length for each species.</p>
+</div>
+<div id="challenge-5" class="slide section level1">
+<h1>Challenge 5</h1>
+<p>What was the heaviest animal measured in each year? Return the columns <code>year</code>, <code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
+<p>Hint: Use <code>filter()</code> rather than <code>summarize()</code>.</p>
+</div>
+<div id="challenge-6" class="slide section level1">
+<h1>Challenge 6</h1>
 <p>Make a scatterplot of <code>hindfoot_length</code> vs <code>weight</code>, but only for the <code>species_id</code> <code>&quot;DM&quot;</code>.</p>
 <ul>
 <li>Use the dataset we’d created, <code>just_dm</code></li>
 <li>Use our ggplot2 code above but with this new dataset in place of <code>surveys</code>.</li>
 </ul>
 </div>
-<div id="challenge-2" class="slide section level1">
-<h1>Challenge 2</h1>
+<div id="challenge-7" class="slide section level1">
+<h1>Challenge 7</h1>
 <p>Make a scatterplot of mean <code>hindfoot_length</code> vs mean <code>weight</code>, where each point is a species, and where the sizes of points indicate the sample size.</p>
 <ul>
 <li><p>Use the dataset we’d created, <code>stat_summary</code></p></li>
 <li><p>Use our ggplot code with the aesthetics <code>x=mean_wt</code> and <code>y=mean_hfl</code>, plus <code>size=n</code>.</p></li>
 </ul>
 </div>
-<div id="challenge-3" class="slide section level1">
-<h1>Challenge 3</h1>
+<div id="challenge-8" class="slide section level1">
+<h1>Challenge 8</h1>
 <ul>
 <li><p>Use the <code>year_summary</code> dataset to make a line plot of counts of each species by year, with a different line for each species.</p></li>
 <li><p>Use <code>aes(linetype=sex)</code> to have different line types for the two sexes.</p></li>
 </ul>
 </div>
-<div id="challenge-4" class="slide section level1">
-<h1>Challenge 4</h1>
+<div id="challenge-9" class="slide section level1">
+<h1>Challenge 9</h1>
 <p>A variant on the box plot is the violin plot. Use <code>geom_violin()</code> to make violin plots of <code>hindfoot_length</code> by <code>species_id</code>.</p>
 </div>
-<div id="challenge-5" class="slide section level1">
-<h1>Challenge 5</h1>
+<div id="challenge-10" class="slide section level1">
+<h1>Challenge 10</h1>
 <p>Try using <code>geom_histogram()</code> to make a histogram visualization of the distribution of <code>weight</code>.</p>
 <p>Hint: You want <code>weight</code> as the x-axis aesthetic. Try specifying <code>bins</code> in <code>geom_histogram()</code>.</p>
 </div>
-<div id="challenge-6" class="slide section level1">
-<h1>Challenge 6</h1>
+<div id="challenge-11" class="slide section level1">
+<h1>Challenge 11</h1>
 <p>Use the <code>year_summary</code> dataset and make scatterplots of mean hindfoot length vs mean weight (with each point being a species), faceting by year.</p>
 <ul>
 <li><p>Use aesthetics <code>x=mean_wt</code> and <code>y=mean_hfl</code></p></li>
@@ -52,16 +78,16 @@
 <li><p>Use <code>facet_wrap(~ year)</code></p></li>
 </ul>
 </div>
-<div id="challenge-7" class="slide section level1">
-<h1>Challenge 7</h1>
+<div id="challenge-12" class="slide section level1">
+<h1>Challenge 12</h1>
 <ul>
 <li>Create a new R Markdown document.</li>
 <li>Delete all of the R code chunks and write a bit of Markdown (some sections, some italicized text, and an itemized list).</li>
 <li>Convert the document to a webpage.</li>
 </ul>
 </div>
-<div id="challenge-8" class="slide section level1">
-<h1>Challenge 8</h1>
+<div id="challenge-13" class="slide section level1">
+<h1>Challenge 13</h1>
 <p>Add code chunks to</p>
 <ul>
 <li>Load the ggplot2 package</li>
@@ -69,12 +95,12 @@
 <li>Create a plot</li>
 </ul>
 </div>
-<div id="challenge-9" class="slide section level1">
-<h1>Challenge 9</h1>
+<div id="challenge-14" class="slide section level1">
+<h1>Challenge 14</h1>
 <p>Use chunk options to control the size of a figure and to hide the code.</p>
 </div>
-<div id="challenge-10" class="slide section level1">
-<h1>Challenge 10</h1>
+<div id="challenge-15" class="slide section level1">
+<h1>Challenge 15</h1>
 <p>Try out a bit of in-line R code.</p>
 </div>
 <div id="capstone-project" class="slide section level1">

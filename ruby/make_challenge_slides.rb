@@ -2,7 +2,7 @@
 # grab the challenges from the .Rmd files and make slides
 
 #files = ["01-intro-to-R.Rmd", "02-dplyr.Rmd", "03-ggplot2.Rmd", "04-rmarkdown.Rmd"]
-files = ["03-ggplot2.Rmd", "04-rmarkdown.Rmd"]
+files = ["02-dplyr.Rmd", "03-ggplot2.Rmd", "04-rmarkdown.Rmd"]
 capfile = "capstone.Rmd"
 ofile = "challenge_slides.Rmd"
 
