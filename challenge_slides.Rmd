@@ -20,8 +20,7 @@ criteria:
 - contains only the `species_id` column and a column that contains
 values that are the square-root of `hindfoot_length` values (e.g. a new column
 `hindfoot_sqrt`).
-- In this `hindfoot_sqrt` column, there are no NA values
-and all values are < 3.
+- In this `hindfoot_sqrt` column, all values are < 3.
 
 Hint: think about how the commands should be ordered
 

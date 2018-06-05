@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -20,6 +20,7 @@
 <script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -122,10 +123,10 @@ button.code-folding-btn:focus {
 </style>
 
 
+
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -161,7 +162,6 @@ $(document).ready(function () {
 <li><a href="#challenge-2">Challenge</a></li>
 <li><a href="#challenge-3">Challenge</a></li>
 <li><a href="#challenge-4">Challenge</a></li>
-<li><a href="#a-bit-of-data-cleaning">A bit of data cleaning</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -187,20 +187,20 @@ $(document).ready(function () {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">selected_col &lt;-<span class="st"> </span><span class="kw">select</span>(surveys, plot_id, species_id, weight)
 <span class="kw">head</span>(selected_col)</code></pre></div>
 <p>To choose rows, use <code>filter()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys1995 &lt;-<span class="st"> </span><span class="kw">filter</span>(surveys, year ==<span class="st"> </span><span class="dv">1995</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys1995 &lt;-<span class="st"> </span><span class="kw">filter</span>(surveys, year <span class="op">==</span><span class="st"> </span><span class="dv">1995</span>)
 <span class="kw">head</span>(surveys1995)</code></pre></div>
 </div>
 <div id="pipes" class="section level3">
 <h3>Pipes</h3>
 <p>The <em>pipe</em> operator (<code>%&gt;%</code>) from the magrittr package makes it easy to chain these actions together: the output of one function becomes the input of the next.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(weight <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
 <p>Another cumbersome bit of typing. In RStudio, type <kbd><code>Ctrl</code></kbd> + <kbd><code>Shift</code></kbd> + <kbd><code>M</code></kbd> and the <code>%&gt;%</code> operator will be inserted.</p>
 <p>In the above we use the pipe to send the <code>surveys</code> data set first through <code>filter</code>, to keep rows where <code>wgt</code> was less than 5, and then through <code>select</code> to keep the <code>species</code> and <code>sex</code> columns. When the data frame is being passed to the <code>filter()</code> and <code>select()</code> functions through a pipe, we don’t need to include it as an argument to these functions anymore.</p>
 <p>If we wanted to create a new object with this smaller version of the data we could do so by assigning it a new name:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_sml &lt;-<span class="st"> </span>surveys %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(weight &lt;<span class="st"> </span><span class="dv">5</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_sml &lt;-<span class="st"> </span>surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(weight <span class="op">&lt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">select</span>(species_id, sex, weight)</code></pre></div>
 <p>Note that the final data frame is the leftmost part of this expression.</p>
 </div>
@@ -213,25 +213,19 @@ $(document).ready(function () {
 <h3>Mutate</h3>
 <p>Frequently you’ll want to create new columns based on the values in existing columns, for example to do unit conversions, or find the ratio of values in two columns. For this we’ll use <code>mutate()</code>.</p>
 <p>To create a new column of weight in kg:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>)</code></pre></div>
 <p>If this runs off your screen and you just want to see the first few rows, you can use a pipe to view the <code>head()</code> of the data (pipes work with non-dplyr functions too, as long as the <code>dplyr</code> or <code>magrittr</code> packages are loaded).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span>head</code></pre></div>
-<p>The first few rows are full of NAs, so if we wanted to remove those we could insert a <code>filter()</code> in this chain:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(weight)) %&gt;%
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weight_kg =</span> weight /<span class="st"> </span><span class="dv">1000</span>) %&gt;%
-<span class="st">  </span>head</code></pre></div>
-<p><code>is.na()</code> is a function that determines whether something is or is not an <code>NA</code>. The <code>!</code> symbol negates it, so we’re asking for everything that is not an <code>NA</code>.</p>
 </div>
 <div id="challenge-1" class="section level3">
 <h3>Challenge</h3>
 <p>Create a new dataframe from the survey data that meets the following criteria:</p>
 <ul>
 <li>contains only the <code>species_id</code> column and a column that contains values that are the square-root of <code>hindfoot_length</code> values (e.g. a new column <code>hindfoot_sqrt</code>).</li>
-<li>In this <code>hindfoot_sqrt</code> column, there are no NA values and all values are &lt; 3.</li>
+<li>In this <code>hindfoot_sqrt</code> column, all values are &lt; 3.</li>
 </ul>
 <p>Hint: think about how the commands should be ordered</p>
 <!-- end challenge -->
@@ -239,40 +233,32 @@ $(document).ready(function () {
 <div id="split-apply-combine-data-analysis-and-the-summarize-function" class="section level3">
 <h3>Split-apply-combine data analysis and the summarize() function</h3>
 <p>Many data analysis tasks can be approached using the “split-apply-combine” paradigm: split the data into groups, apply some analysis to each group, and then combine the results. <code>dplyr</code> makes this very easy through the use of the <code>group_by()</code> function. <code>group_by()</code> splits the data into groups upon which some operations can be run. For example, if we wanted to group by sex and find the number of rows of data for each sex, we would do:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">tally</span>()</code></pre></div>
 <p>Here, <code>tally()</code> is the action applied to the groups created to <code>group_by()</code> and counts the total number of records for each category. <code>group_by()</code> is often used together with <code>summarize()</code> which collapses each group into a single-row summary of that group. So to view mean <code>weight</code> by sex:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
 <p>You can group by multiple columns too:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
-<p>It looks like most of these species were never weighed. We could then discard rows where <code>mean_weight</code> is <code>NA</code> with <code>filter()</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(mean_weight))</code></pre></div>
-<p>Another thing we might do here is sort rows by <code>mean_weight</code>, using <code>arrange()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(mean_weight)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight))</code></pre></div>
+<p>We might also sort the rows by <code>mean_weight</code>, using <code>arrange()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">arrange</span>(mean_weight)</code></pre></div>
 <p>If you want them sorted from highest to lowest, use <code>desc()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(mean_weight)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mean_weight))</code></pre></div>
 <p>Also note that you can include multiple summaries.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys %&gt;%
-<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) %&gt;%
-<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">min_weight =</span> <span class="kw">min</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(mean_weight)) %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(sex, species_id) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_weight =</span> <span class="kw">mean</span>(weight),
+            <span class="dt">min_weight =</span> <span class="kw">min</span>(weight)) <span class="op">%&gt;%</span>
 <span class="st">    </span><span class="kw">arrange</span>(<span class="kw">desc</span>(mean_weight))</code></pre></div>
 </div>
 <div id="challenge-2" class="section level3">
@@ -290,31 +276,6 @@ $(document).ready(function () {
 <p>What was the heaviest animal measured in each year? Return the columns <code>year</code>, <code>genus</code>, <code>species</code>, and <code>weight</code>.</p>
 <p>Hint: Use <code>filter()</code> rather than <code>summarize()</code>.</p>
 <!-- end challenge -->
-</div>
-<div id="a-bit-of-data-cleaning" class="section level3">
-<h3>A bit of data cleaning</h3>
-<p>In preparations for the plotting, let’s do a bit of data cleaning: remove rows with missing <code>species_id</code>, <code>weight</code>, <code>hindfoot_length</code>, or <code>sex</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">surveys_complete &lt;-<span class="st"> </span>surveys %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(species_id !=<span class="st"> &quot;&quot;</span>, !<span class="kw">is.na</span>(weight)) %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(hindfoot_length), sex !=<span class="st"> &quot;&quot;</span>)</code></pre></div>
-<p>There are a lot of species with low counts. Let’s remove the species with less than 10 counts.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># count records per species</span>
-species_counts &lt;-<span class="st"> </span>surveys_complete %&gt;%
-<span class="st">    </span><span class="kw">group_by</span>(species_id) %&gt;%
-<span class="st">    </span>tally
-
-<span class="kw">head</span>(species_counts)
-
-<span class="co"># get names of the species with counts &gt;= 10</span>
-frequent_species &lt;-<span class="st">  </span>species_counts %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(n &gt;=<span class="st"> </span><span class="dv">10</span>) %&gt;%
-<span class="st">    </span><span class="kw">select</span>(species_id)
-
-<span class="co"># filter out the less-frequent species</span>
-reduced &lt;-<span class="st"> </span>surveys_complete %&gt;%
-<span class="st">    </span><span class="kw">filter</span>(species_id %in%<span class="st"> </span>frequent_species$species_id)</code></pre></div>
-<p>We might save this to a file:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(reduced, <span class="st">&quot;CleanData/portal_data_reduced.csv&quot;</span>)</code></pre></div>
 <p><a href="http://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Handy dplyr cheatsheet</a></p>
 </div>
 </div>
@@ -328,9 +289,13 @@ reduced &lt;-<span class="st"> </span>surveys_complete %&gt;%
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 
@@ -339,7 +304,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
