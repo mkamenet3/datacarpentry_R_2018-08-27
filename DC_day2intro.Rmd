@@ -34,14 +34,6 @@ output:
 
 
 
-## Why databases?
-
-- super-fast access to really large data sets
-
-- careful curation of data that are complicated and/or constantly
-  changing
-
-
 ## SQL
 
 ```
@@ -55,6 +47,15 @@ output:
     COUNT(*), SUM(weight)
     JOIN ON
 ```
+
+
+## Why databases?
+
+- super-fast access to really large data sets
+
+- careful curation of data that are complicated and/or constantly
+  changing
+
 
 
 ##
