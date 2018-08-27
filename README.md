@@ -15,7 +15,7 @@ for each level and a very brief introduction to plotting.
 [Karl Broman](http://kbroman.org) for a
 [Data Carpentry workshop](http://uw-madison-aci.github.io/2016-06-01-uwmadison/)
 at UW-Madison on 1-2 June 2016; further revised for 23 Aug 2016, 10
-Jan 2017, and 8 Jan 2018.)
+Jan 2017, 8 Jan 2018, 4 Jun 2018, and 27 Aug 2018.)
 
 > ## Prerequisites
 >
