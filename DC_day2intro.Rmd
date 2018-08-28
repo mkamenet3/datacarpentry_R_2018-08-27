@@ -6,6 +6,17 @@ output:
     css: no_total_slides.css
 ---
 
+##
+
+<div class="centered" style="margin-top:250px; font-size:200%;">
+<a href="https://bit.ly/dcuwm20180827"><code>bit.ly/dcuwm20180827</code></a>
+</div>
+
+
+
+
+
+
 ## Spreadsheets
 
 - make it a rectangle
