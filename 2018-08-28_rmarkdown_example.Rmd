@@ -1,0 +1,37 @@
+---
+title: "R Markdown Example"
+author: "Karl Broman"
+date: "August 28, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message=FALSE,
+                      warning=FALSE, fig.width=11, fig.height=5.5)
+```
+
+This is an example to show how to write a R Markdown document.
+
+First I'll load the packages and the data (from the web).
+
+```{r load_data_and_libraries}
+library(dplyr)
+library(ggplot2)
+surveys <- read.csv("https://kbroman.org/datacarp/portal_clean.csv")
+```
+
+The data has `r nrow(surveys)` rows and `r ncol(surveys)` columns.
+
+Here's a scatterplot of hindfoot length vs weight:
+
+```{r hfl_v_weight, fig.height=6}
+ggplot(surveys, aes(x=weight, y=hindfoot_length)) +
+    geom_point()
+```
+
+Here are the first few lines of the data, for some selected columns:
+
+```{r selected_data, results="hide"}
+surveys %>% select(species_id, weight, hindfoot_length) %>% head()
+```
+
