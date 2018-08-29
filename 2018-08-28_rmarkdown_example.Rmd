@@ -31,7 +31,6 @@ ggplot(surveys, aes(x=weight, y=hindfoot_length)) +
 
 Here are the first few lines of the data, for some selected columns:
 
-```{r selected_data, results="hide"}
+```{r selected_data}
 surveys %>% select(species_id, weight, hindfoot_length) %>% head()
 ```
-
