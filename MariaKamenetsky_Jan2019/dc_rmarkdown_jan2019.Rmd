@@ -1,0 +1,182 @@
+---
+title: "RMarkdown - January 2019 Data Carpentry Lesson"
+author: "Maria Kamenetsky"
+date: "January 17, 2019"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+minutes: 60
+header-includes:
+- \usepackage{float}
+- \floatplacement{figure}{H}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height = 3, fig.width = 5)
+```
+
+#Outline
+
+- 0) Why RMarkdown
+- 1) Basics of RMarkdown
+- 2) Rcode chunks
+- 3) Code chunk options
+- 4) Inline R code
+- 5) Other Output formats
+
+#  Why ```RMarkdown```?
+
+- combines text, code, figures, tables
+- write papers without having to remember to swap figures, change cell values in table.
+- automatically generate reports
+- *reproducible* documents
+
+
+# 1) RMarkdown Basics
+
+
+**RStudio -> File -> New File ->R Markdown** (keep defaults, add title)
+
+![Prompt to start new RMarkdown document.](rmarkdown_init.JPG)
+
+![Header for RMarkdown document.](rmd_header.JPG)
+
+![Text and code chunk.](text_codechunk.JPG)
+
+- **Markdown**:
+    - system for writing web pages, marking up text (like in an email).
+    - Marked up text gets converted to html, with *marks* replaced by proper html code.
+    
+- Markdown Basics:
+    - **a bolded statement**
+    - *an italicized statement*
+    - code-type font: `code-type font`
+    - this is a bulleted list
+    
+1. A numbered
+1. List
+1. Can be made
+1. Like this
+
+
+```{r, eval=FALSE, echo=TRUE}
+1. A numbered
+1. List
+1. Can be made
+1. Like this
+```
+
+**HTML** Headers:
+
+```{r, eval=FALSE}
+#Header 1
+##Header 2
+###Header 3
+```
+
+#Header 1
+##Header 2
+###Header 3
+
+
+**Generate basic RMarkdown document.**
+
+
+
+#### **CHALLENGE 1: Make a new RMarkdown document. Delete all of the R code chunks and write a bit of Markdown (some sections, italicized/bold text, itemized list). Knit to HTML**
+    
+    
+## More Markdown (if time allows)
+
+
+- add a hyperlink: `[text to show](http://the-web-page.com)`
+- include an image: `![image caption](http://url/for/file)`
+- Sub-script (F~2~): `F~2~` and super-script ( F^2^): `F^2^`.
+- LaTeX code: ($E=mc^2$) `$E=mc^2$` or formulas: $$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$ (`$$y = \mu + \sum_{i=1}^p \beta_i x_i + \epsilon$$`).
+
+
+#2)R code chunks
+
+A main code chunk:
+
+![Code chunk example](codechunk_ex.JPG)
+
+Place R code between the sets of ticks. You may also give each code chunk a name, which can help you find errors:
+
+![Named code chunk example](named_codechunk.JPG)
+
+Can create a new code chunk manually (with backticks) or short-cut: **CTRL+ALT+i**.
+
+
+
+#### **CHALLENGE 2: Add code chunks to load ggplot2 package, read in portal data, create a plot.**
+
+
+
+#3) Code chunk options
+
+- customize R chunk output
+
+
+
+![Example of R code chunk options specifyin that the code should not be output in the final report (echo=FALSE) and any messaged should also be suppressed (message=FALSE)](codechunk_options.JPG)
+
+
+- Useful code chunk options:
+    - `echo=FALSE`: supress code from being printed in final report
+    - `results="hide"`: avoid having any results printed.
+    - `eval=FALSE`: do not evaulate the code in the chunk.
+    - `warning=FALSE` and `message=FALSE` hides any warnings or messages produced.
+    - `fig.height`, `fig.width` controls size of figures (in inches).
+    - `fig.cap`: adds a caption to the figures.
+    - `fig.path`: defines path where figures will be saved. Example: `..., fig.path="Figs/",...`
+
+- code chunk options can be set locally (for each code chunk) or globally (for the entire RMarkdown document)
+
+![Global code chunk](global_chunk.JPG)
+
+
+#### **CHALLENGE 3: Use chunk options to control the size of a figure and hide the code.**
+
+
+
+# 4) Inline R Code
+
+- You can make every number in your report reproducible in the text. Use <code>&#96;r</code> and <code>&#96;</code> for an in-line code chunk. 
+    - For example:  <code>&#96;r round(some_value, 2)&#96;</code>. The code will be executed and replaced with the value of the result.
+- Don't let these R chunks split across lines - they will not work. 
+- If you have some calculations to do, you can have a preceeding R chunk to calculate the results, hide the code and results using `echo=FALSE` and `results="hide"` (which is equivalent to `include=FALSE`).
+
+
+##### **CHALLENGE 4: Try out in-line code in R **
+
+```{r}
+surveys <- read.csv("C:/Users/Maria/Desktop/DataCarpentry/Clean/portal_clean.csv")
+```
+
+```{r, eval=FALSE}
+There are `r nrow(surveys)` observations in the *surveys* dataset.
+```
+
+
+There are `r nrow(surveys)` observations in the *surveys* dataset.
+
+
+
+# 5) Other Output formats
+
+(May take some additional installation on your computer)
+
+In addition to HTML documents, RMarkdown can also *knit* to PDF or Word documents.
+
+![Other output format options](knitoptions.JPG)
+
+
+#Resources
+
+
+- [Knitr in a knutshell tutorial](http://kbroman.org/knitr_knutshell)
+- [Dynamic Documents with R and knitr](http://www.amazon.com/exec/obidos/ASIN/1482203537/7210-20) (book)
+- [R Markdown documentation](http://rmarkdown.rstudio.com)
+- [R Markdown cheat sheet](http://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
