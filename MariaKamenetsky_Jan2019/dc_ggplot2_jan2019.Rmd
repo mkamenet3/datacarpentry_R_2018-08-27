@@ -1,13 +1,17 @@
 ---
 title: "ggplot2 - January 2019 Data Carpentry Lesson"
 author: "Maria Kamenetsky"
-date: January 17, 2019
-output: pdf_document
+date: "January 17, 2019"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
 minutes: 60
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height = 3, fig.width = 5)
+solution <- FALSE
 ```
 
 #Outline
@@ -134,12 +138,12 @@ p1 + scale_x_log10()
 p1 + scale_x_sqrt()
 ```
 
-**CHALLENGE 1: Make a scatterplot of *hindfoot_length* vs. *weight* but only for *species_id* "DM"**
+#### CHALLENGE 1: Make a scatterplot of *hindfoot_length* vs. *weight* but only for *species_id* "DM"**
 
 - Use the dataset we created,**just_dm**
 - Use our ```ggplot2()``` code above but with this new dataset in place of *surveys*.
 
-```{r}
+```{r, include=solution}
 #Challenge solution
 
 ggplot(just_dm, aes(x=weight, y= hindfoot_length)) + geom_point()
@@ -208,7 +212,7 @@ p2 + geom_point(aes(color= species_id))
     - Use our ggplot code with the aesthetics ```x=mean_wt``` and ```y=mean_hfl```, plus ```size=n```.
     
     
-```{r}
+```{r, include=solution}
 ggplot(stat_summary, aes(x=mean_wt, y=mean_hfl)) + geom_point(aes(color = species_id, size=n))
 ```
     
@@ -314,7 +318,7 @@ ggplot(count_by_year, aes(x=year, y=n)) +
     - **Use the ```year_summary``` dataset to make a line plot of counts of each species by year, with a different colored line for each species**
     - **Use ```aes(linetype=sex)``` to have different line types for the two sexes**
     
-```{r}
+```{r lineplots, fig.height=3, fig.width=5, fig.cap="Time series of species count by sex.", include=solution}
 ggplot(year_summary, aes(x=year, y=n)) +
     geom_line(aes(color=species_id, linetype=sex))
 ```
@@ -384,7 +388,7 @@ ggplot(year_summary, aes(x = year, y = n)) +
 
 
 
-```{r}
+```{r, include=solution}
 ggplot(year_summary, aes(x=mean_wt, y=mean_hfl)) +
     geom_point(aes(color=species_id, shape=sex)) +
     facet_wrap(~year)
