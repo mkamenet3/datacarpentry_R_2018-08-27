@@ -12,10 +12,9 @@ add/remove rows and columns, and finish with how to calculate summary statistics
 for each level and a very brief introduction to plotting.
 
 (This particular set of lessons has revisions by
-[Karl Broman](http://kbroman.org) for a
-[Data Carpentry workshop](http://uw-madison-aci.github.io/2016-06-01-uwmadison/)
-at UW-Madison on 1-2 June 2016; further revised for 23 Aug 2016, 10
-Jan 2017, 8 Jan 2018, 4 Jun 2018, and 27 Aug 2018.)
+[Karl Broman](http://kbroman.org) and Maria Kamenetsky for a
+[Data Carpentry workshop](https://uw-madison-datascience.github.io/2019-01-16-uwmadison-dc/)
+at UW-Madison on 16-17 January 2019
 
 > ## Prerequisites
 >

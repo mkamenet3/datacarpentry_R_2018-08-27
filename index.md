@@ -14,9 +14,9 @@ status: Teaching
 # Note
 
 This particular set of lessons has revisions by
-[Karl Broman](http://kbroman.org) for a
-[Data Carpentry workshop](http://uw-madison-aci.github.io/2016-06-01-uwmadison/)
-at UW-Madison on 23-24 August 2016. The official Data Carpentry R-Ecology
+[Karl Broman](http://kbroman.org) and Maria Kamenetsky for a
+[Data Carpentry workshop](https://uw-madison-datascience.github.io/2019-01-16-uwmadison-dc/)
+at UW-Madison on 16-17 January 2019. The official Data Carpentry R-Ecology
 lessons are at <http://www.datacarpentry.org/R-ecology-lesson/>.
 
 # Data Carpentry {{ page.topic }} for {{ page.domain }}
@@ -53,8 +53,8 @@ for each level and a very brief introduction to plotting.
 
 1. [Introduction to R](01-intro-to-R.html)
 3. [Aggregating and analyzing data with dplyr](02-dplyr.html)
-4. [Data visualization with ggplot2](03-ggplot2.html)
-5. [Reproducible reports with R Markdown](04-rmarkdown.html)
+4. [Data visualization with ggplot2](dc_ggplot2_jan2019.html)
+5. [Reproducible reports with R Markdown](dc_rmarkdown_jan2019.html)
 6. [Capstone project](capstone.html)
 
 ## Data
