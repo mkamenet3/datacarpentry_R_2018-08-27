@@ -10,7 +10,7 @@ minutes: 60
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height = 3, fig.width = 5)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8)
 solution <- FALSE
 ```
 
@@ -61,8 +61,8 @@ Load data:
 
 ```{r}
 download.file("http://kbroman.org/datacarp/portal_clean.csv",
-              "C:/Users/Maria/Desktop/DataCarpentry/Clean/portal_clean.csv")
-surveys <- read.csv("C:/Users/Maria/Desktop/DataCarpentry/Clean/portal_clean.csv")
+              "portal_clean.csv")
+surveys <- read.csv("portal_clean.csv")
 ```
 
 Create three datasets:
@@ -167,10 +167,15 @@ p2 <- ggplot(surveys, aes(x = weight, y = hindfoot_length))
 - point size
 
 ```{r}
-#These two plots are equivalent because I assigned p2 <- ggplot(surveys, aes(x = weight, y = hindfoot_length))
 p2 + geom_point(size=0.5)
-# ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
-#     geom_point(size=0.5)
+
+```
+
+These two plots are equivalent because I assigned `p2 <- ggplot(surveys, aes(x = weight, y = hindfoot_length))`
+
+```{r}
+ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
+    geom_point(size=0.5)
 ```
 
 
@@ -178,9 +183,17 @@ p2 + geom_point(size=0.5)
 
 ```{r}
 p2 + geom_point(color = "slateblue")
-# ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
-#     geom_point(color = "slateblue")
+
 ```
+
+Which is equivalent to:
+
+```{r}
+ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
+    geom_point(color = "slateblue")
+```
+
+because we had set `p2 <- ggplot(surveys, aes(x = weight, y = hindfoot_length))`
 
 
 - alpha (= transparency)
@@ -188,9 +201,16 @@ p2 + geom_point(color = "slateblue")
 
 ```{r}
 p2 + geom_point(alpha = 0.1)
-# ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
-#     geom_point(alpha = 0.1)
+
 ```
+
+which is equivalent to:
+
+```{r}
+ggplot(surveys, aes(x = weight, y = hindfoot_length)) +
+    geom_point(alpha = 0.1)
+```
+
 
 - Putting it all together
 
@@ -207,7 +227,7 @@ p2 + geom_point(shape="triangle", size=0.5, color="slateblue", alpha=0.1)
 p2 + geom_point(aes(color= species_id))
 ```
 
-- **CHALLENGE 2:  Make a scatterplot of mean *hindfoot_length* vs. mean *weight*, where each point is a species, and where the sizes of the points indicate the sample size**
+#### CHALLENGE 2:  Make a scatterplot of mean *hindfoot_length* vs. mean *weight*, where each point is a species, and where the sizes of the points indicate the sample size**
     - Use the dataset ```stat_summary```
     - Use our ggplot code with the aesthetics ```x=mean_wt``` and ```y=mean_hfl```, plus ```size=n```.
     
@@ -314,9 +334,8 @@ ggplot(count_by_year, aes(x=year, y=n)) +
 
 ```
 
-- **Challenge 3: **
-    - **Use the ```year_summary``` dataset to make a line plot of counts of each species by year, with a different colored line for each species**
-    - **Use ```aes(linetype=sex)``` to have different line types for the two sexes**
+#### CHALLENGE 3: Use the ```year_summary``` dataset to make a line plot of counts of each species by year, with a different colored line for each species**
+    - Use ```aes(linetype=sex)``` to have different line types for the two sexes
     
 ```{r lineplots, fig.height=3, fig.width=5, fig.cap="Time series of species count by sex.", include=solution}
 ggplot(year_summary, aes(x=year, y=n)) +
@@ -355,7 +374,7 @@ ggplot(year_summary, aes(x = year, y = n)) +
 
 - vertical split
 
-```{r}
+```{r, fig.height=10}
 ggplot(year_summary, aes(x = year, y = n)) +
     geom_line(aes(color=sex)) +
     facet_grid(species_id~.)
@@ -363,7 +382,7 @@ ggplot(year_summary, aes(x = year, y = n)) +
 
 - horizontal split
 
-```{r}
+```{r, fig.width=12}
 ggplot(year_summary, aes(x = year, y = n)) +
     geom_line(aes(color=sex)) +
     facet_grid(~species_id)
@@ -374,17 +393,16 @@ ggplot(year_summary, aes(x = year, y = n)) +
 - separate panel for each sex and species
 
 
-```{r}
+```{r, fig.height=10}
 ggplot(year_summary, aes(x = year, y = n)) +
     geom_line(aes(color=sex)) +
     facet_grid(species_id ~ sex)
 ```
 
-- **CHALLENGE 4:**
-    - **Use the ```year_summary``` dataset and make scatterplots of mean hindfoot length vs. mean weight (with each point being a species), facetting by year.**
-        - **Use aesthetics ```x=mean_wt``` and ```y=mean_hfl```**
-        - **Use geom_point(aes(color=species_id, shape=sex))**
-        - **Use ```facet_wrap(~year)```**
+#### CHALLENGE 4:Use the ```year_summary``` dataset and make scatterplots of mean hindfoot length vs. mean weight (with each point being a species), facetting by year.
+        - Use aesthetics ```x=mean_wt``` and ```y=mean_hfl```
+        - Use geom_point(aes(color=species_id, shape=sex))
+        - Use ```facet_wrap(~year)```
 
 
 
@@ -420,7 +438,7 @@ p <- ggplot(surveys, aes(x=weight, y=hindfoot_length)) + geom_point()
 ggsave("scatter.png", p, height=6, width=8)
 ```
 
-To create a different filetype, just change the extension. FOr example, to make a pdf:
+To create a different file type, just change the extension. For example, to make a pdf:
 
 ```{r}
 ggsave("scatter.pdf", p, height=6, width=8)
