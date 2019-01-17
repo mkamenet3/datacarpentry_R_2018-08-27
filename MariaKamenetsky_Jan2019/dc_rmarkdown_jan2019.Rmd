@@ -44,9 +44,10 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height 
 
 ![Text and code chunk.](text_codechunk.JPG)
 
-- **Markdown**:
-    - system for writing web pages, marking up text (like in an email).
-    - Marked up text gets converted to html, with *marks* replaced by proper html code.
+##Markdown:
+
+1. system for writing web pages, marking up text (like in an email).
+1. Marked up text gets converted to html, with *marks* replaced by proper html code.
     
 - Markdown Basics:
     - **a bolded statement**
@@ -79,12 +80,41 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height 
 ##Header 2
 ###Header 3
 
+*Delete default RMarkdown text (except global options)*
 
-**Generate basic RMarkdown document.**
+```{r, echo=TRUE, eval=FALSE}
+# Add Some Notes
+## Reflections on Markdown So Far
+
+Markdown is **super** awesome, I'm *not* even joking. 
+
+Why I love `RMarkdown`:
+
+1. It makes things reproducible
+2. Easy to collaborate
+3. It's fun!
+
+
+```
+
+# Add Some Notes
+## Reflections on Markdown So Far
+
+Markdown is **super** awesome, I'm *not* even joking. 
+
+Why I love `RMarkdown`:
+
+1. It makes things reproducible
+2. Easy to collaborate
+3. It's fun!
 
 
 
-#### **CHALLENGE 1: Make a new RMarkdown document. Delete all of the R code chunks and write a bit of Markdown (some sections, italicized/bold text, itemized list). Knit to HTML**
+*Generate basic RMarkdown document.*
+
+
+
+#### **CHALLENGE 1**: Make a new RMarkdown document. Delete all of the R code chunks and write a bit of Markdown (some sections, italicized/bold text, itemized list). Knit to HTML
     
     
 ## More Markdown (if time allows)
@@ -108,9 +138,27 @@ Place R code between the sets of ticks. You may also give each code chunk a name
 
 Can create a new code chunk manually (with backticks) or short-cut: **CTRL+ALT+i**.
 
+![Importing surveys dataset into RMarkdown and creating a visualization with R code chunk options.]
+
+```{r loadlibraries}
+library(ggplot2)
+library(dplyr)
+```
+
+```{r importsurveys}
+download.file("http://kbroman.org/datacarp/portal_clean.csv", "portal_clean.csv")
+surveys <- read.csv("portal_clean.csv")
+```
 
 
-#### **CHALLENGE 2: Add code chunks to load ggplot2 package, read in portal data, create a plot.**
+```{r createplot1}
+ggplot(surveys, aes(x=weight, y=hindfoot_length)) +
+   geom_point(aes(color=species_id, shape=sex)) +
+  facet_wrap(~year)
+```
+
+
+#### **CHALLENGE 2**: Add code chunks to load ggplot2 package, read in portal data, create a plot.
 
 
 
@@ -134,10 +182,18 @@ Can create a new code chunk manually (with backticks) or short-cut: **CTRL+ALT+i
 
 - code chunk options can be set locally (for each code chunk) or globally (for the entire RMarkdown document)
 
-![Global code chunk](global_chunk.JPG)
+![Global code chunk example](global_chunk.JPG)
+
+![Plot with chunk options example](plot_chunkoptions.JPG)
 
 
-#### **CHALLENGE 3: Use chunk options to control the size of a figure and hide the code.**
+```{r createplot, fig.height=8, fig.width=10, fig.cap="Species weight and height by year", echo=FALSE}
+ggplot(surveys, aes(x=weight, y=hindfoot_length)) +
+   geom_point(aes(color=species_id, shape=sex)) +
+  facet_wrap(~year)
+```
+
+#### **CHALLENGE 3**: Use chunk options to control the size of a figure and hide the code.
 
 
 
@@ -149,7 +205,7 @@ Can create a new code chunk manually (with backticks) or short-cut: **CTRL+ALT+i
 - If you have some calculations to do, you can have a preceeding R chunk to calculate the results, hide the code and results using `echo=FALSE` and `results="hide"` (which is equivalent to `include=FALSE`).
 
 
-##### **CHALLENGE 4: Try out in-line code in R **
+##### **CHALLENGE 4**: Try out in-line code in R 
 
 ```{r}
 surveys <- read.csv("portal_clean.csv")
