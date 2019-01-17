@@ -11,7 +11,7 @@ minutes: 60
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.height = 5, fig.width = 8)
-solution <- FALSE
+solution <- TRUE
 ```
 
 #Outline
@@ -21,7 +21,6 @@ solution <- FALSE
     - base plot
     - x and y
 - 2) *geoms*
-    - + vs. %>%
 - 3) Other Aesthetics
 - 4) Layering (line plot + boxplot)
 - 5) Facetting
@@ -52,10 +51,11 @@ library(ggplot2)
 
 **GOAL:** Use ```dplyr``` tools to reformat our data so that we can make visualizations for *mammals* data.
 
-- We will make three datasets from *portal_clean.csv*:
+- We will make four datasets from *portal_clean.csv*:
     - 1) **just_dm** dataset only containing species=="DM"
     - 2) **stat_summary** dataset containing mean weight, mean height, and observation count by species
     - 3) **year_summary** dataset containing mean weight, mean height, and observation count by species, year, and sex.
+    - 4) **count_by_year** dataset containing observation count by year.
 
 Load data:
 
@@ -87,6 +87,11 @@ year_summary <- surveys %>%
               mean_hfl=mean(hindfoot_length),
               n=n())
 str(year_summary)
+
+#count_by_year
+count_by_year <- surveys %>%
+    group_by(year) %>%
+    tally
 ```
 
 
@@ -275,16 +280,10 @@ ggplot(surveys, aes(x=species_id, y = weight)) +
 
 **Goal:** Make a lineplot counts of animals by year. We will use ```geom_line()``` geom.
 
-First, create new dataset using ```dplyr```
+Recall our **count_by_year** dataset from the data prep step.
 
-```{r}
-count_by_year <- surveys %>%
-    group_by(year) %>%
-    tally
-str(count_by_year)
-```
 
-Next, use ```geom_line()``` geom.
+We will use the ```geom_line()``` geom to create a line plot.
 
 ```{r}
 ggplot(count_by_year, aes(x=year, y=n)) +
