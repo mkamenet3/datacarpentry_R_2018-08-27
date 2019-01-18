@@ -1,0 +1,128 @@
+---
+title: "Capstone project"
+author: "Karl Broman (modified by M.Kamenetsky)"
+date: "January 17, 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+Capstone project for Data Carpentry course.
+
+## 1: Load the data
+
+```{r load_data, message=FALSE}
+library(dplyr)
+library(ggplot2)
+download.file("http://kbroman.org/datacarp/portal_clean.csv", "portal_clean.csv")
+surveys <- read.csv("portal_clean.csv")
+```
+
+There are `r ncol(surveys)` columns and `r nrow(surveys)` rows.
+
+## 2: Boxplots of weight by sex
+
+Boxplots of weight by sex.
+
+```{r boxplots_weight_noomit}
+surveys %>% select(weight, sex) %>%
+    filter(sex != "", !is.na(sex)) %>%
+    ggplot() + geom_boxplot(aes(x=sex, y=weight))
+```
+
+
+Boxplots of weight by sex, omitting individuals with missing sex.
+
+```{r boxplots_weight_omit}
+surveys %>% select(weight, sex) %>%
+    filter(sex != "", !is.na(sex)) %>%
+    ggplot() + geom_boxplot(aes(x=sex, y=weight))
+```
+
+## 3. Histogram of hindfoot lengths
+
+Histogram of hindfoot length:
+
+```{r hist_hindfootlength_noomit}
+surveys %>% filter(!is.na(hindfoot_length)) %>%
+    ggplot() + geom_histogram(aes(x=hindfoot_length), bins=150)
+```
+
+Histogram of hindfoot length, omitting individuals with missing hindfoot_length:
+
+```{r hist_hindfootlength_omit}
+surveys %>% filter(!is.na(hindfoot_length)) %>%
+    ggplot() + geom_histogram(aes(x=hindfoot_length), bins=150)
+```
+
+## 4. Scatterplots of hindfoot length vs weight for 3 species
+
+Using `dplyr` and `ggplot` together:
+
+```{r scatterplots1}
+surveys %>% filter(species_id %in% c("DM", "DO", "DS")) %>%
+    filter(!is.na(weight), !is.na(hindfoot_length)) %>%
+    ggplot(aes(x=hindfoot_length, y=weight)) +
+    geom_point(aes(color=species_id)) + facet_grid(species_id ~ .)
+```
+
+Separating out `dplyr` and `ggplot` commands:
+
+```{r scatterplots}
+species_subset <- surveys %>% filter(species_id %in% c("DM", "DO", "DS")) %>%
+    filter(!is.na(weight), !is.na(hindfoot_length))
+    
+ggplot(species_subset, aes(x=hindfoot_length, y=weight)) +
+    geom_point(aes(color=species_id)) + facet_grid(species_id ~ .)
+```
+
+
+
+## 5. Plot of counts of "DM" in "Rodent Exclosure" plots over time
+
+```{r plot_counts_by_year}
+counts <- surveys %>% filter(species_id == "DM") %>%
+    filter(plot_type=="Rodent Exclosure") %>%
+    group_by(year) %>%
+    tally()
+
+counts %>% ggplot(aes(x=year, y=n)) + geom_line()
+```
+
+
+Alternative:
+
+```{r plot_counts_by_year_al}
+counts <- surveys %>% filter(species_id == "DM") %>%
+    filter(plot_type=="Rodent Exclosure") %>%
+    group_by(year) %>%
+    tally()
+
+ggplot(counts,aes(x=year, y=n)) + geom_line()
+
+
+```
+
+## 6. Table with counts of "DM" by plot_type in 1977
+
+Using base R for table:
+
+```{r table_plot_type}
+counts1977 <- surveys %>% filter(species_id == "DM", year==1977) %>%
+    group_by(plot_type) %>%
+    tally() %>%
+    select(plot_type, n)
+counts1977
+```
+
+
+
+Using `kable`:
+
+```{r table_plot_typealt}
+counts1977 <- surveys %>% filter(species_id == "DM", year==1977) %>%
+    group_by(plot_type) %>%
+    tally() %>%
+    select(plot_type, n)
+knitr::kable(counts1977)
+```
